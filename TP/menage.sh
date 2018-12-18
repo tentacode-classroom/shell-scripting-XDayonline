@@ -6,7 +6,7 @@ BAZAR_DIRECTORY=$CURRENT_DIRECTORY/bazar
 CLEAN_DIRECTORY=$CURRENT_DIRECTORY/bazar_clean
 
 echo "Lancement du programme"
-echo "_______________________________"
+echo -e "_______________________________\n"
 
 #Supprime anciens répertoires
 rm -Rf $BAZAR_DIRECTORY
@@ -30,4 +30,4 @@ mkdir -p $CLEAN_DIRECTORY/divers \
 
 #Copie les fichiers vers le nouveau répertoire
 cp $BAZAR_DIRECTORY/Bureau/secret/projetsecret.pdf $CLEAN_DIRECTORY/divers/projetsecret.pdf
-touch -t 20181101100000 $CLEAN_DIRECTORY/divers/projetsecret.pdf
+touch -t 201812181018  $CLEAN_DIRECTORY/divers/projetsecret.pdf
