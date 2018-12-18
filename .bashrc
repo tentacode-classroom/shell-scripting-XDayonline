@@ -117,4 +117,10 @@ PS1="\[\033[48;5;26m\]{\$?}\[$(tput sgr0)\]\[\033[48;5;-1m\] \[$(tput sgr0)\]\[\
 # ne pas stocker dans l'historique les commandes en double
 HISTCONTROL=ignoredups 
 
-alias script='cd /mnt/d/Users/Gianni/Scripts'
+alias scripttp='cd /mnt/d/Users/Gianni/Scripts/shell-scripting-XDayonline/TP/'
+
+cd /mnt/d/Users/Gianni/Scripts
+
+alias back='cd ..'
+
+alias backup='cp -r /mnt/d/Users/Gianni/Scripts ~/Script'  
