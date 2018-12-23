@@ -9,7 +9,7 @@ echo "Lancement du programme"
 echo -e "_______________________________\n"
 
 #Supprime anciens répertoires
-rm -Rf $BAZAR_DIRECTORY
+#rm -Rf $BAZAR_DIRECTORY
 rm -Rf $CLEAN_DIRECTORY
 
 #Crée le nouveau répertoire
@@ -31,21 +31,22 @@ mkdir -p $CLEAN_DIRECTORY/divers \
 #Copie les fichiers vers le nouveau répertoire
 FILES=`find $BAZAR_DIRECTORY -type f`
 
-	for FILE in $FILES
-	do
-		file $FILE | grep -q "image data"
-		if [ $? = 0 ]
-		then
-			cp $FILE $CLEAN_DIRECTORY/images
+for FILE in $FILES
+do
+	file $FILE | grep -q "image data"
+	if [ $? = 0 ]
+	then
+		cp $FILE $CLEAN_DIRECTORY/images
+	else
+		file $FILE | grep -q "Media"
+	            if [ $? = 0 ]
+        	    then
+                	    cp $FILE $CLEAN_DIRECTORY/videos
 		else
-			file $FILE | grep -q "Media"
-	                if [ $? = 0 ]
-        	        then
-                	        cp $FILE $CLEAN_DIRECTORY/videos
-			else
-				cp $FILE $CLEAN_DIRECTORY/divers
-			fi
+			cp $FILE $CLEAN_DIRECTORY/divers
 		fi
+	fi
 	
-	done
-	echo Fin
+done
+echo Fin
+rm -Rf $BAZAR_DIRECTORY
