@@ -13,15 +13,15 @@ rm -Rf $BAZAR_DIRECTORY
 rm -Rf $CLEAN_DIRECTORY
 
 #Crée le nouveau répertoire
-mkdir -p $BAZAR_DIRECTORY/Bureau/secret \
-	$BAZAR_DIRECTORY/Download
+#mkdir -p $BAZAR_DIRECTORY/Bureau/secret \
+#	$BAZAR_DIRECTORY/Download
 
 #Crée les fichiers
-touch $BAZAR_DIRECTORY/Bureau/image.jpg \
-	$BAZAR_DIRECTORY/Bureau/secret/projetsecret.pdf \
-	$BAZAR_DIRECTORY/Download/fichier.pdf \
-	$BAZAR_DIRECTORY/Download/xdaymusic.flp \
-	$BAZAR_DIRECTORY/Download/moi.jpg
+#touch $BAZAR_DIRECTORY/Bureau/image.jpg \
+#	$BAZAR_DIRECTORY/Bureau/secret/projetsecret.pdf \
+#	$BAZAR_DIRECTORY/Download/fichier.pdf \
+#	$BAZAR_DIRECTORY/Download/xdaymusic.flp \
+#	$BAZAR_DIRECTORY/Download/moi.jpg
 
 #Crée répertoire clean
 mkdir -p $CLEAN_DIRECTORY/divers \
@@ -29,5 +29,23 @@ mkdir -p $CLEAN_DIRECTORY/divers \
 	$CLEAN_DIRECTORY/videos
 
 #Copie les fichiers vers le nouveau répertoire
-cp $BAZAR_DIRECTORY/Bureau/secret/projetsecret.pdf $CLEAN_DIRECTORY/divers/projetsecret.pdf
-touch -t 201812181018  $CLEAN_DIRECTORY/divers/projetsecret.pdf
+FILES=`find $BAZAR_DIRECTORY -type f`
+
+	for FILE in $FILES
+	do
+		file $FILE | grep -q "image data"
+		if [ $? = 0 ]
+		then
+			cp $FILE $CLEAN_DIRECTORY/images
+		else
+			file $FILE | grep -q "Media"
+	                if [ $? = 0 ]
+        	        then
+                	        cp $FILE $CLEAN_DIRECTORY/videos
+			else
+				cp $FILE $CLEAN_DIRECTORY/divers
+			fi
+		fi
+	
+	done
+	echo Fin
